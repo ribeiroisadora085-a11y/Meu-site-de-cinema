@@ -34,4 +34,4 @@ Projeto criado para a disciplina de Desenvolvimento Web. Um site de cinema com m
 
 ## 👩‍💻 Autora
 
-Feito com ❤️ por **Isadora** — 2026
+Feito com ❤️ por **Isadora 1 ADM** — 2026
