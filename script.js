@@ -149,17 +149,45 @@ function voltarTopo() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// ── Formulário de contato ────────────────────────────────────
-function enviarFormulario(event) {
+// ── Formulário de contato (Formspree) ───────────────────────
+async function enviarFormulario(event) {
   event.preventDefault();
-  var nome     = document.getElementById('nome').value.trim();
-  var email    = document.getElementById('email').value.trim();
-  var mensagem = document.getElementById('mensagem').value.trim();
-  if (!nome || !email || !mensagem) { alert('Por favor, preencha todos os campos!'); return; }
-  document.getElementById('form-contato').reset();
-  var aviso = document.getElementById('aviso-sucesso');
-  aviso.style.display = 'block';
-  setTimeout(function() { aviso.style.display = 'none'; }, 5000);
+
+  var btn  = document.getElementById('btn-enviar');
+  var form = document.getElementById('form-contato');
+  var ok   = document.getElementById('aviso-sucesso');
+  var err  = document.getElementById('aviso-erro');
+
+  ok.style.display  = 'none';
+  err.style.display = 'none';
+
+  // Texto de carregando
+  btn.textContent = 'Enviando...';
+  btn.disabled = true;
+
+  try {
+    var data = new FormData(form);
+    var response = await fetch('https://formspree.io/f/mojyodog', {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    });
+
+    if (response.ok) {
+      form.reset();
+      ok.style.display = 'block';
+      setTimeout(function() { ok.style.display = 'none'; }, 6000);
+    } else {
+      err.style.display = 'block';
+      setTimeout(function() { err.style.display = 'none'; }, 5000);
+    }
+  } catch (e) {
+    err.style.display = 'block';
+    setTimeout(function() { err.style.display = 'none'; }, 5000);
+  }
+
+  btn.textContent = 'Enviar Mensagem 🎬';
+  btn.disabled = false;
 }
 
 // ── Inicializar ──────────────────────────────────────────────
