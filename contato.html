@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contato · CineIsadora</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <div class="logo">🎬 CineIsadora</div>
+    <nav>
+      <a href="index.html">Início</a>
+      <a href="contato.html" class="ativo">Contato</a>
+    </nav>
+  </header>
+
+  <section class="contato-hero">
+    <h1>Entre em Contato</h1>
+    <p>Tem alguma recomendação de filme? Manda uma mensagem!</p>
+  </section>
+
+  <main class="contato-main">
+    <div class="form-box">
+      <h2>📩 Envie sua mensagem</h2>
+      <form id="form-contato" onsubmit="enviarFormulario(event)">
+
+        <div class="campo">
+          <label for="nome">Nome</label>
+          <input
+            type="text"
+            id="nome"
+            name="nome"
+            placeholder="Seu nome completo"
+            required
+          />
+        </div>
+
+        <div class="campo">
+          <label for="email">E-mail</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="seu@email.com"
+            required
+          />
+        </div>
+
+        <div class="campo">
+          <label for="mensagem">Mensagem</label>
+          <textarea
+            id="mensagem"
+            name="mensagem"
+            placeholder="Escreva sua mensagem aqui..."
+            required
+          ></textarea>
+        </div>
+
+        <button type="submit" class="btn-enviar">Enviar Mensagem 🎬</button>
+      </form>
+
+      <div id="aviso-sucesso" class="aviso-sucesso">
+        ✅ Mensagem enviada com sucesso! Obrigada pelo contato.
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>🎬 CineIsadora &nbsp;·&nbsp; Feito com ❤️ por Isadora &nbsp;·&nbsp; 2024</p>
+    <a href="index.html">← Voltar para os filmes</a>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

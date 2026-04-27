@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CineIsadora – Meus Filmes Favoritos</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo">🎬 CineIsadora</div>
+    <nav>
+      <a href="index.html" class="ativo">Início</a>
+      <a href="contato.html">Contato</a>
+    </nav>
+    <div class="header-fav" id="header-fav" title="Meus favoritos">
+      ❤️ <span id="fav-count">0</span>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <p class="hero-tag">✦ Curadoria especial</p>
+      <h1>Meus Filmes<br/><span>Favoritos</span></h1>
+      <p class="hero-sub">Uma seleção de obras que marcaram o cinema para sempre</p>
+      <div class="hero-search-wrap">
+        <span class="search-icon">🔍</span>
+        <input
+          type="text"
+          id="busca"
+          class="hero-search"
+          placeholder="Buscar filme..."
+          oninput="buscar(this.value)"
+          autocomplete="off"
+        />
+      </div>
+    </div>
+    <div class="hero-glow"></div>
+  </section>
+
+  <!-- STATS BAR -->
+  <div class="stats-bar">
+    <div class="stat"><span class="stat-num" id="stat-total">15</span><span class="stat-label">Filmes</span></div>
+    <div class="stat-sep"></div>
+    <div class="stat"><span class="stat-num">3</span><span class="stat-label">Categorias</span></div>
+    <div class="stat-sep"></div>
+    <div class="stat"><span class="stat-num" id="stat-favs">0</span><span class="stat-label">Favoritos</span></div>
+    <div class="stat-sep"></div>
+    <div class="stat"><span class="stat-num">🏆</span><span class="stat-label">Curadoria</span></div>
+  </div>
+
+  <!-- FILTROS -->
+  <div class="filtros-wrap">
+    <button class="filtro-btn ativo" data-filtro="todos" onclick="filtrar('todos')">🎬 Todos</button>
+    <button class="filtro-btn" data-filtro="classico" onclick="filtrar('classico')">🏛️ Clássicos</button>
+    <button class="filtro-btn" data-filtro="acao" onclick="filtrar('acao')">⚡ Ação & Aventura</button>
+    <button class="filtro-btn" data-filtro="drama" onclick="filtrar('drama')">🎭 Drama & Suspense</button>
+    <button class="filtro-btn" data-filtro="favorito" onclick="filtrar('favorito')">❤️ Favoritos</button>
+  </div>
+
+  <!-- GRADE ÚNICA DE FILMES -->
+  <main class="filmes-wrap">
+    <div class="grade" id="grade">
+
+      <!-- ── CLÁSSICOS ── -->
+      <div class="card" data-cat="classico" data-titulo="O Poderoso Chefão" onclick="mostrarInfo('O Poderoso Chefão','Drama · Crime · 1972 · ⭐ 9.2','Dirigido por Francis Ford Coppola, acompanha a poderosa família Corleone. Um dos maiores filmes da história do cinema, vencedor de 3 Oscars incluindo Melhor Filme.')">
+        <div class="card-img-wrap">
+          <img src="https://image.tmdb.org/t/p/w500/3bhkrj58Vtu7enYsLegiokantuU.jpg"
+               alt="O Poderoso Chefão"
+               onerror="imgError(this,['https://upload.wikimedia.org/wikipedia/en/1/1c/Godfather_ver1.jpg','https://placehold.co/500x750/0a0000/e50914?text=O+Poderoso+Chefao'])" loading="lazy"/>
+          <div class="card-badge">⭐ 9.2</div>
+          <span class="destaque-badge">🏆 Clássico</span>
+          <button class="fav-btn" onclick="event.stopPropagation(); toggleFav(this, 'O Poderoso Chefão')" title="Adicionar aos favoritos">♡</button>
+          <div class="card-hover-overlay"><span>Ver mais</span></div>
+        </div>
+        <div class="card-info">
+          <h3>O Poderoso Chefão</h3>
+          <p class="genero">Drama · Crime · 1972</p>
+        </div>
+      </div>
+
+      <div class="card" data-cat="classico" data-titulo="Forrest Gump" onclick="mostrarInfo('Forrest Gump','Drama · Comédia · 1994 · ⭐ 8.8','Dirigido por Robert Zemeckis. Tom Hanks dá vida a Forrest, um homem simples que participou dos maiores eventos da história americana. Vencedor de 6 Oscars incluindo Melhor Filme.')">
+        <div class="card-img-wrap">
+          <img src="https://image.tmdb.org/t/p/w500/arw2vcBveWOVZr6pxd9XTd1TdQa.jpg"
+               alt="Forrest Gump"
+               onerror="this.src='https://placehold.co/500x750/1a0000/e50914?text=Forrest+Gump'" loading="lazy"/>
+          <div class="card-badge">⭐ 8.8</div>
+          <button class="fav-btn" onclick="event.stopPropagation(); toggleFav(this, 'Forrest Gump')" title="Adicionar aos favoritos">♡</button>
+          <div class="card-hover-overlay"><span>Ver mais</span></div>
+        </div>
+        <div class="card-info">
+          <h3>Forrest Gump</h3>
+          <p class="genero">Drama · Comédia · 1994</p>
+        </div>
+      </div>
+
+      <div class="card" data-cat="classico" data-titulo="Titanic" onclick="mostrarInfo('Titanic','Romance · Drama · 1997 · ⭐ 7.9','James Cameron dirigiu esta épica história de amor a bordo do famoso transatlântico. Com Leonardo DiCaprio e Kate Winslet. Vencedor de 11 Oscars, incluindo Melhor Filme.')">
+        <div class="card-img-wrap">
+          <img src="https://image.tmdb.org/t/p/w500/9xjZS2rlVxm8SFx8kPC3aIGCOYQ.jpg"
+               alt="Titanic"
+               onerror="this.src='https://placehold.co/500x750/001a3a/4488cc?text=Titanic'" loading="lazy"/>
+          <div class="card-badge">⭐ 7.9</div>
+          <button class="fav-btn" onclick="event.stopPropagation(); toggleFav(this, 'Titanic')" title="Adicionar aos favoritos">♡</button>
+          <div class="card-hover-overlay"><span>Ver mais</span></div>
+        </div>
+        <div class="card-info">
+          <h3>Titanic</h3>
+          <p class="genero">Romance · Drama · 1997</p>
+        </div>
+      </div>
+
+      <div class="card" data-cat="classico" data-titulo="O Rei Leão" onclick="mostrarInfo('O Rei Leão','Animação · Aventura · 1994 · ⭐ 8.5','O clássico Disney que conta a história de Simba. Com músicas inesquecíveis como Hakuna Matata e Can You Feel the Love Tonight, conquistou gerações inteiras.')">
+        <div class="card-img-wrap">
+          <img src="https://image.tmdb.org/t/p/w500/sKCr78MXSLixwmZ8DyJLrpMsd15.jpg"
+               alt="O Rei Leão"
+               onerror="this.src='https://placehold.co/500x750/1a1000/f5c518?text=O+Rei+Leão'" loading="lazy"/>
+          <div class="card-badge">⭐ 8.5</div>
+          <button class="fav-btn" onclick="event.stopPropagation(); toggleFav(this, 'O Rei Leão')" title="Adicionar aos favoritos">♡</button>
+          <div class="card-hover-overlay"><span>Ver mais</span></div>
+        </div>
+        <div class="card-info">
+          <h3>O Rei Leão</h3>
+          <p class="genero">Animação · Aventura · 1994</p>
+        </div>
+      </div>
+
+      <!-- ── AÇÃO & AVENTURA ── -->
+      <div class="card" data-cat="acao" data-titulo="Interestelar" onclick="mostrarInfo('Interestelar','Ficção Científica · 2014 · ⭐ 8.6','Obra-prima de Christopher Nolan. Um grupo de astronautas parte em missão para encontrar um novo planeta habitável para a humanidade. Com trilha sonora épica de Hans Zimmer.')">
+        <div class="card-img-wrap">
+          <img src="https://image.tmdb.org/t/p/w500/rAiYTfKGqDCRIIqo664sY9XZIvQ.jpg"
+               alt="Interestelar"
+               onerror="this.src='https://placehold.co/500x750/000a1a/4488cc?text=Interestelar'" loading="lazy"/>
+          <div class="card-badge">⭐ 8.6</div>
+          <span class="destaque-badge">🚀 Épico</span>
+          <button class="fav-btn" onclick="event.stopPropagation(); toggleFav(this, 'Interestelar')" title="Adicionar aos favoritos">♡</button>
+          <div class="card-hover-overlay"><span>Ver mais</span></div>
+        </div>
+        <div class="card-info">
+          <h3>Interestelar</h3>
+          <p class="genero">Ficção Científica · 2014</p>
+        </div>
+      </div>
+
+      <div class="card" data-cat="acao" data-titulo="A Origem" onclick="mostrarInfo('A Origem','Ficção Científica · Ação · 2010 · ⭐ 8.8','Christopher Nolan cria um thriller de espionagem dentro dos sonhos. Leonardo DiCaprio lidera uma equipe que invade a mente de pessoas para roubar seus segredos mais profundos.')">
+        <div class="card-img-wrap">
+          <img src="https://image.tmdb.org/t/p/w500/9gk7adHYeDvHkCSEqAvQNLV5Uge.jpg"
+               alt="A Origem"
+               onerror="this.src='https://placehold.co/500x750/000a1a/888?text=A+Origem'" loading="lazy"/>
+          <div class="card-badge">⭐ 8.8</div>
+          <button class="fav-btn" onclick="event.stopPropagation(); toggleFav(this, 'A Origem')" title="Adicionar aos favoritos">♡</button>
+          <div class="card-hover-overlay"><span>Ver mais</span></div>
+        </div>
+        <div class="card-info">
+          <h3>A Origem</h3>
+          <p class="genero">Ficção Científica · Ação · 2010</p>
+        </div>
+      </div>
+
+      <div class="card" data-cat="acao" data-titulo="Matrix" onclick="mostrarInfo('Matrix','Ação · Ficção Científica · 1999 · ⭐ 8.7','As irmãs Wachowski revolucionaram o cinema. Um programador descobre que a realidade é uma simulação controlada por máquinas e se junta à resistência. Com Keanu Reeves.')">
+        <div class="card-img-wrap">
+          <img src="https://image.tmdb.org/t/p/w500/f89U3ADr1oiB1s9GkdPOEpXUk5H.jpg"
+               alt="Matrix"
+               onerror="this.src='https://placehold.co/500x750/001a00/00cc44?text=Matrix'" loading="lazy"/>
+          <div class="card-badge">⭐ 8.7</div>
+          <button class="fav-btn" onclick="event.stopPropagation(); toggleFav(this, 'Matrix')" title="Adicionar aos favoritos">♡</button>
+          <div class="card-hover-overlay"><span>Ver mais</span></div>
+        </div>
+        <div class="card-info">
+          <h3>Matrix</h3>
+          <p class="genero">Ação · Ficção Científica · 1999</p>
+        </div>
+      </div>
+
+      <div class="card" data-cat="acao" data-titulo="Vingadores: Ultimato" onclick="mostrarInfo('Vingadores: Ultimato','Ação · Aventura · 2019 · ⭐ 8.4','O épico final do MCU. Os heróis restantes tentam reverter o snap de Thanos. Com mais de 3 horas de duração, foi o maior bilheteiro de todos os tempos com mais de 2,7 bilhões de dólares.')">
+        <div class="card-img-wrap">
+          <img src="https://image.tmdb.org/t/p/w500/or06FN3Dka5tukK1e9sl16pB3iy.jpg"
+               alt="Vingadores: Ultimato"
+               onerror="this.src='https://placehold.co/500x750/1a001a/aa44ff?text=Vingadores'" loading="lazy"/>
+          <div class="card-badge">⭐ 8.4</div>
+          <button class="fav-btn" onclick="event.stopPropagation(); toggleFav(this, 'Vingadores: Ultimato')" title="Adicionar aos favoritos">♡</button>
+          <div class="card-hover-overlay"><span>Ver mais</span></div>
+        </div>
+        <div class="card-info">
+          <h3>Vingadores: Ultimato</h3>
+          <p class="genero">Ação · Aventura · 2019</p>
+        </div>
+      </div>
+
+      <!-- ── DRAMA & SUSPENSE ── -->
+      <div class="card" data-cat="drama" data-titulo="Coringa" onclick="mostrarInfo('Coringa','Drama · Suspense · 2019 · ⭐ 8.4','Joaquin Phoenix entrega uma performance histórica como Arthur Fleck. Vencedor do Leão de Ouro em Veneza e do Oscar de Melhor Ator. Uma visão sombria sobre o isolamento social.')">
+        <div class="card-img-wrap">
+          <img src="https://image.tmdb.org/t/p/w500/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg"
+               alt="Coringa"
+               onerror="this.src='https://placehold.co/500x750/1a0000/e50914?text=Coringa'" loading="lazy"/>
+          <div class="card-badge">⭐ 8.4</div>
+          <button class="fav-btn" onclick="event.stopPropagation(); toggleFav(this, 'Coringa')" title="Adicionar aos favoritos">♡</button>
+          <div class="card-hover-overlay"><span>Ver mais</span></div>
+        </div>
+        <div class="card-info">
+          <h3>Coringa</h3>
+          <p class="genero">Drama · Suspense · 2019</p>
+        </div>
+      </div>
+
+      <div class="card" data-cat="drama" data-titulo="Clube da Luta" onclick="mostrarInfo('Clube da Luta','Drama · Suspense · 1999 · ⭐ 8.8','David Fincher dirige este thriller perturbador com Brad Pitt e Edward Norton. Um executivo insatisfeito cria um clube de luta secreto que evolui para algo muito maior e mais perigoso.')">
+        <div class="card-img-wrap">
+          <img src="https://image.tmdb.org/t/p/w500/pB8BM7pdSp6B6Ih7QZ4DrQ3PmJK.jpg"
+               alt="Clube da Luta"
+               onerror="this.src='https://placehold.co/500x750/1a0000/888?text=Clube+da+Luta'" loading="lazy"/>
+          <div class="card-badge">⭐ 8.8</div>
+          <button class="fav-btn" onclick="event.stopPropagation(); toggleFav(this, 'Clube da Luta')" title="Adicionar aos favoritos">♡</button>
+          <div class="card-hover-overlay"><span>Ver mais</span></div>
+        </div>
+        <div class="card-info">
+          <h3>Clube da Luta</h3>
+          <p class="genero">Drama · Suspense · 1999</p>
+        </div>
+      </div>
+
+      <div class="card" data-cat="drama" data-titulo="Parasita" onclick="mostrarInfo('Parasita','Thriller · Drama · 2019 · ⭐ 8.5','Bong Joon-ho criou um thriller sul-coreano que conquistou o mundo. Primeira produção não-anglófona a vencer o Oscar de Melhor Filme. Uma crítica afiada à desigualdade social.')">
+        <div class="card-img-wrap">
+          <img src="https://image.tmdb.org/t/p/w500/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg"
+               alt="Parasita"
+               onerror="this.src='https://placehold.co/500x750/0a0a00/cccc00?text=Parasita'" loading="lazy"/>
+          <div class="card-badge">⭐ 8.5</div>
+          <span class="destaque-badge">🏆 Oscar</span>
+          <button class="fav-btn" onclick="event.stopPropagation(); toggleFav(this, 'Parasita')" title="Adicionar aos favoritos">♡</button>
+          <div class="card-hover-overlay"><span>Ver mais</span></div>
+        </div>
+        <div class="card-info">
+          <h3>Parasita</h3>
+          <p class="genero">Thriller · Drama · 2019</p>
+        </div>
+      </div>
+
+      <div class="card" data-cat="drama" data-titulo="Oppenheimer" onclick="mostrarInfo('Oppenheimer','Drama · Histórico · 2023 · ⭐ 8.3','Christopher Nolan retrata J. Robert Oppenheimer e a criação da bomba atômica. Cillian Murphy em sua melhor performance. Vencedor de 7 Oscars incluindo Melhor Filme e Melhor Diretor.')">
+        <div class="card-img-wrap">
+          <img src="https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg"
+               alt="Oppenheimer"
+               onerror="this.src='https://placehold.co/500x750/1a0a00/f5c518?text=Oppenheimer'" loading="lazy"/>
+          <div class="card-badge">⭐ 8.3</div>
+          <button class="fav-btn" onclick="event.stopPropagation(); toggleFav(this, 'Oppenheimer')" title="Adicionar aos favoritos">♡</button>
+          <div class="card-hover-overlay"><span>Ver mais</span></div>
+        </div>
+        <div class="card-info">
+          <h3>Oppenheimer</h3>
+          <p class="genero">Drama · Histórico · 2023</p>
+        </div>
+      </div>
+
+      <!-- ── 3 FILMES EXTRAS ── -->
+      <div class="card" data-cat="drama" data-titulo="Cidade de Deus" onclick="mostrarInfo('Cidade de Deus','Crime · Drama · 2002 · ⭐ 8.6','Dirigido por Fernando Meirelles, retrata o crescimento do crime organizado na favela Cidade de Deus no Rio de Janeiro entre as décadas de 60 e 80. Um dos maiores filmes brasileiros de todos os tempos.')">
+        <div class="card-img-wrap">
+          <img src="https://image.tmdb.org/t/p/w500/k7eYdWvhYQyRQoU2TB2A2Xu2TfD.jpg"
+               alt="Cidade de Deus"
+               onerror="imgError(this,['https://placehold.co/500x750/1a1000/f5c518?text=Cidade+de+Deus'])" loading="lazy"/>
+          <div class="card-badge">⭐ 8.6</div>
+          <span class="destaque-badge">🇧🇷 Nacional</span>
+          <button class="fav-btn" onclick="event.stopPropagation(); toggleFav(this, 'Cidade de Deus')" title="Adicionar aos favoritos">♡</button>
+          <div class="card-hover-overlay"><span>Ver mais</span></div>
+        </div>
+        <div class="card-info">
+          <h3>Cidade de Deus</h3>
+          <p class="genero">Crime · Drama · 2002</p>
+        </div>
+      </div>
+
+      <div class="card" data-cat="acao" data-titulo="O Senhor dos Anéis: O Retorno do Rei" onclick="mostrarInfo('O Senhor dos Anéis: O Retorno do Rei','Aventura · Fantasia · 2003 · ⭐ 9.0','Peter Jackson conclui a trilogia épica. Frodo e Sam chegam ao Monte da Perdição enquanto Aragorn lidera a última batalha. Venceu todos os 11 Oscars para os quais foi indicado, incluindo Melhor Filme.')">
+        <div class="card-img-wrap">
+          <img src="https://image.tmdb.org/t/p/w500/rCzpDGLbOoPwLjy3OAm5NUPOTrC.jpg"
+               alt="O Senhor dos Anéis: O Retorno do Rei"
+               onerror="imgError(this,['https://placehold.co/500x750/0a0f1a/8899cc?text=LOTR'])" loading="lazy"/>
+          <div class="card-badge">⭐ 9.0</div>
+          <span class="destaque-badge">🏆 11 Oscars</span>
+          <button class="fav-btn" onclick="event.stopPropagation(); toggleFav(this, 'O Senhor dos Anéis: O Retorno do Rei')" title="Adicionar aos favoritos">♡</button>
+          <div class="card-hover-overlay"><span>Ver mais</span></div>
+        </div>
+        <div class="card-info">
+          <h3>O Senhor dos Anéis</h3>
+          <p class="genero">Aventura · Fantasia · 2003</p>
+        </div>
+      </div>
+
+      <div class="card" data-cat="classico" data-titulo="Divertida Mente" onclick="mostrarInfo('Divertida Mente','Animação · Comédia · 2015 · ⭐ 8.1','A Pixar explora as emoções de uma menina chamada Riley por meio de personagens como Alegria, Tristeza, Raiva, Medo e Nojo. Venceu o Oscar de Melhor Filme de Animação e emociona adultos e crianças.')">
+        <div class="card-img-wrap">
+          <img src="https://image.tmdb.org/t/p/w500/2H1TmgdfNtsKlU9jKdeNyYL5y8T.jpg"
+               alt="Divertida Mente"
+               onerror="imgError(this,['https://placehold.co/500x750/001a3a/44aaff?text=Divertida+Mente'])" loading="lazy"/>
+          <div class="card-badge">⭐ 8.1</div>
+          <button class="fav-btn" onclick="event.stopPropagation(); toggleFav(this, 'Divertida Mente')" title="Adicionar aos favoritos">♡</button>
+          <div class="card-hover-overlay"><span>Ver mais</span></div>
+        </div>
+        <div class="card-info">
+          <h3>Divertida Mente</h3>
+          <p class="genero">Animação · Comédia · 2015</p>
+        </div>
+      </div>
+
+    </div><!-- /grade -->
+
+    <!-- Mensagem quando busca não encontra nada -->
+    <div id="sem-resultado" class="sem-resultado" style="display:none;">
+      <span>🎬</span>
+      <p>Nenhum filme encontrado para "<strong id="busca-termo"></strong>"</p>
+    </div>
+
+  </main>
+
+  <!-- MODAL -->
+  <div id="modal" class="modal-overlay" onclick="fecharModal()">
+    <div class="modal-box" onclick="event.stopPropagation()">
+      <button class="modal-fechar" onclick="fecharModal()">✕</button>
+      <div class="modal-icon">🎬</div>
+      <h3 id="modal-titulo"></h3>
+      <p class="modal-meta" id="modal-meta"></p>
+      <p id="modal-texto"></p>
+    </div>
+  </div>
+
+  <!-- BOTÃO VOLTAR AO TOPO -->
+  <button id="btn-topo" class="btn-topo" onclick="voltarTopo()" title="Voltar ao topo">↑</button>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">🎬 CineIsadora</div>
+      <p>Feito com ❤️ por Isadora · 2024</p>
+      <a href="contato.html" class="footer-btn">Entre em Contato</a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
