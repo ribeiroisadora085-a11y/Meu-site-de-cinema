@@ -5,7 +5,7 @@ Projeto criado para a disciplina de Desenvolvimento Web. Um site de cinema com m
 ## 🔗 Links
 
 - **Site:** [Clique aqui para acessar](https://SEU-USUARIO.github.io/meu-site-de-cinema/)
-- **Repositório:** [github.com/SEU-USUARIO/meu-site-de-cinema](https://github.com/SEU-USUARIO/meu-site-de-cinema)
+- **Repositório:** [https://github.com/ribeiroisadora085-a11y/Meu-site-de-cinema)
 
 ## 📋 Funcionalidades
 
