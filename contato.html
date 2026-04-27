@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contato · CineIsadora</title>
   <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet" />
 </head>
 <body>
 
@@ -14,6 +16,7 @@
       <a href="index.html">Início</a>
       <a href="contato.html" class="ativo">Contato</a>
     </nav>
+    <div class="header-fav" title="Meus favoritos">❤️ <span>0</span></div>
   </header>
 
   <section class="contato-hero">
@@ -24,7 +27,12 @@
   <main class="contato-main">
     <div class="form-box">
       <h2>📩 Envie sua mensagem</h2>
+
       <form id="form-contato" onsubmit="enviarFormulario(event)">
+
+        <!-- Campo oculto obrigatório do Formspree -->
+        <input type="hidden" name="access_key" value="mojyodog" />
+        <input type="hidden" name="_subject" value="Nova mensagem - CineIsadora" />
 
         <div class="campo">
           <label for="nome">Nome</label>
@@ -58,18 +66,27 @@
           ></textarea>
         </div>
 
-        <button type="submit" class="btn-enviar">Enviar Mensagem 🎬</button>
+        <button type="submit" class="btn-enviar" id="btn-enviar">
+          Enviar Mensagem 🎬
+        </button>
       </form>
 
       <div id="aviso-sucesso" class="aviso-sucesso">
         ✅ Mensagem enviada com sucesso! Obrigada pelo contato.
       </div>
+
+      <div id="aviso-erro" class="aviso-erro">
+        ❌ Erro ao enviar. Verifique os campos e tente novamente.
+      </div>
     </div>
   </main>
 
   <footer>
-    <p>🎬 CineIsadora &nbsp;·&nbsp; Feito com ❤️ por Isadora &nbsp;·&nbsp; 2026</p>
-    <a href="index.html">← Voltar para os filmes</a>
+    <div class="footer-inner">
+      <div class="footer-logo">🎬 CineIsadora</div>
+      <p>Feito com ❤️ por Isadora · 2026</p>
+      <a href="index.html" class="footer-btn">← Voltar para os filmes</a>
+    </div>
   </footer>
 
   <script src="script.js"></script>
